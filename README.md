@@ -28,3 +28,5 @@ If no events are available, the application displays “No upcoming events avail
 Home → Sports Events → Event Details → Event Registration → Registration Successful → My Registrations.
 
 Admin Flow: Admin Login → Admin Dashboard → Manage Events → View Participants → Mark Attendance.
+
+GitHub branch and pull request setup completed.
