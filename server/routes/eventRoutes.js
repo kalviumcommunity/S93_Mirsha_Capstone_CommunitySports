@@ -4,7 +4,22 @@ const Event = require("../models/Event");
 
 router.post("/", async (req, res) => {
   try {
-    const event = await Event.create(req.body);
+    const { title, sport, date, venue, maxParticipants } = req.body;
+
+    if (!title || !sport || !date || !venue || maxParticipants == null) {
+      return res.status(400).json({
+        message: "All event fields are required",
+      });
+    }
+
+    const event = await Event.create({
+      title,
+      sport,
+      date,
+      venue,
+      maxParticipants,
+    });
+
     res.status(201).json(event);
   } catch (error) {
     res.status(500).json({ message: error.message });
