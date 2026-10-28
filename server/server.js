@@ -9,10 +9,7 @@ app.use(express.json());
 
 app.use("/api/events", require("./routes/eventRoutes"));
 
-// Temporary test route
-app.get("/api/events", (req, res) => {
-  res.send("Events route working");
-});
+
 
 app.get("/", (req, res) => {
   res.send("Community Sports API is running");
