@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const Event = require("../models/Event");
@@ -48,28 +49,22 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 router.put("/:id", async (req, res) => {
   try {
     const event = await Event.findByIdAndUpdate(
       req.params.id,
       req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
+      { new: true, runValidators: true }
     );
 
     if (!event) {
-      return res.status(404).json({
-        message: "Event not found",
-      });
+      return res.status(404).json({ message: "Event not found" });
     }
 
     res.status(200).json(event);
   } catch (error) {
-    res.status(400).json({
-      message: error.message,
-    });
+    res.status(400).json({ message: error.message });
   }
 });
 
