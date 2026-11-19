@@ -1,11 +1,12 @@
-
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import EventCard from "./components/EventCard";
+import Auth from "./components/Auth";
 import "./App.css";
 
 function App() {
   const [message, setMessage] = useState("");
+
   const [events, setEvents] = useState([
     {
       id: 1,
@@ -17,6 +18,7 @@ function App() {
   ]);
 
   const [editingId, setEditingId] = useState(null);
+
   const [editForm, setEditForm] = useState({
     title: "",
     sport: "",
@@ -26,12 +28,14 @@ function App() {
 
   function handleEdit(event) {
     setEditingId(event.id);
+
     setEditForm({
       title: event.title,
       sport: event.sport,
       date: event.date,
       venue: event.venue,
     });
+
     setMessage("Edit the event details below.");
   }
 
@@ -40,9 +44,7 @@ function App() {
 
     setEvents((previousEvents) =>
       previousEvents.map((event) =>
-        event.id === editingId
-          ? { ...event, ...editForm }
-          : event
+        event.id === editingId ? { ...event, ...editForm } : event
       )
     );
 
@@ -67,6 +69,8 @@ function App() {
       <Navbar />
 
       <main id="home">
+        <Auth />
+
         <h1>Community Sports Events</h1>
         <p>Explore sports events and join your community.</p>
 
@@ -102,10 +106,7 @@ function App() {
                 placeholder="Event title"
                 required
                 onChange={(e) =>
-                  setEditForm({
-                    ...editForm,
-                    title: e.target.value,
-                  })
+                  setEditForm({ ...editForm, title: e.target.value })
                 }
               />
 
@@ -114,10 +115,7 @@ function App() {
                 placeholder="Sport"
                 required
                 onChange={(e) =>
-                  setEditForm({
-                    ...editForm,
-                    sport: e.target.value,
-                  })
+                  setEditForm({ ...editForm, sport: e.target.value })
                 }
               />
 
@@ -126,10 +124,7 @@ function App() {
                 placeholder="Date"
                 required
                 onChange={(e) =>
-                  setEditForm({
-                    ...editForm,
-                    date: e.target.value,
-                  })
+                  setEditForm({ ...editForm, date: e.target.value })
                 }
               />
 
@@ -138,14 +133,12 @@ function App() {
                 placeholder="Venue"
                 required
                 onChange={(e) =>
-                  setEditForm({
-                    ...editForm,
-                    venue: e.target.value,
-                  })
+                  setEditForm({ ...editForm, venue: e.target.value })
                 }
               />
 
               <button type="submit">Save Changes</button>
+
               <button
                 type="button"
                 onClick={() => setEditingId(null)}
