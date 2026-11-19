@@ -1,11 +1,16 @@
+
 function Navbar() {
   return (
-    <nav>
-      <h2>Community Sports</h2>
-      <div>
-        <a href="#home">Home</a>{" "}
-        <a href="#events">Events</a>{" "}
+    <nav className="navbar">
+      <a href="#home" className="brand">
+        PLAY<span>HUB.</span>
+      </a>
+
+      <div className="nav-links">
+        <a href="#home">Dashboard</a>
+        <a href="#events">Sports Events</a>
         <a href="#registrations">My Registrations</a>
+        <a href="#about">About</a>
       </div>
     </nav>
   );

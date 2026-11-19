@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Event = require("../models/Event");
 
+// Create Event
 router.post("/", async (req, res) => {
   try {
     const { title, sport, date, venue, maxParticipants } = req.body;
@@ -27,6 +28,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Get All Events
 router.get("/", async (req, res) => {
   try {
     const events = await Event.find();
@@ -36,6 +38,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get Single Event
 router.get("/:id", async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
@@ -50,6 +53,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Update Event
 router.put("/:id", async (req, res) => {
   try {
     const event = await Event.findByIdAndUpdate(
@@ -65,6 +69,27 @@ router.put("/:id", async (req, res) => {
     res.status(200).json(event);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+// Delete Event
+router.delete("/:id", async (req, res) => {
+  try {
+    const event = await Event.findByIdAndDelete(req.params.id);
+
+    if (!event) {
+      return res.status(404).json({
+        message: "Event not found",
+      });
+    }
+
+    res.json({
+      message: "Event deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
   }
 });
 

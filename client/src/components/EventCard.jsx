@@ -1,26 +1,38 @@
 
-import Button from "./Button";
-
 function EventCard({
   title,
   sport,
   date,
   venue,
+  maxParticipants,
   onRegister,
   onEdit,
   onDelete,
 }) {
   return (
-    <div className="event-card">
-      <h3>{title}</h3>
-      <p>Sport: {sport}</p>
-      <p>Date: {date}</p>
-      <p>Venue: {venue}</p>
+    <article className="event-card">
+      <span className="sport-tag">{sport}</span>
 
-      <Button onClick={onRegister}>Register</Button>
-      <Button onClick={onEdit}>Edit</Button>
-      <Button onClick={onDelete}>Delete</Button>
-    </div>
+      <h3>{title}</h3>
+
+      <p>📅 {date}</p>
+      <p>📍 {venue}</p>
+      <p>👥 Maximum participants: {maxParticipants}</p>
+
+      <button className="primary-btn" onClick={onRegister}>
+        Register
+      </button>
+
+      <button className="secondary-btn" onClick={onEdit}>
+        Edit
+      </button>
+
+      {onDelete && (
+        <button className="danger-btn" onClick={onDelete}>
+          Delete
+        </button>
+      )}
+    </article>
   );
 }
 
